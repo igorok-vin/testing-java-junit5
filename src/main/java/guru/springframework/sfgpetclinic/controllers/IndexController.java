@@ -11,4 +11,9 @@ public class IndexController {
 
         return "notimplemented";
     }
+
+    public String errorHandler(){
+
+        throw new ValueNotFoundException();
+    }
 }

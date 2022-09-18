@@ -28,4 +28,11 @@ class IndexControllerTest {
     void oupsHandler() {
         assertTrue("notimplemented".equals(indexController.oupsHandler()),()->"This is buiding message for test");
     }
+
+    @Test
+    void errorHandler() {
+        assertThrows(ValueNotFoundException.class,()->{
+            indexController.errorHandler();
+        });
+    }
 }
