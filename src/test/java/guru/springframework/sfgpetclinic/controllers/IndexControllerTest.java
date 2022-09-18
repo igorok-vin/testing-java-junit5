@@ -1,6 +1,7 @@
 package guru.springframework.sfgpetclinic.controllers;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,12 +14,13 @@ class IndexControllerTest {
         indexController = new IndexController();
     }
 
+    @DisplayName("Test proper display name")
     @Test
     void index() {
         assertEquals("index",indexController.index());
 
         /*текст повідомлення вискакує в консолі коли тест провальний */
-        assertEquals("index1",indexController.index(),"test not good");
+        assertEquals("index",indexController.index(),"test not good");
     }
 
     @Test
