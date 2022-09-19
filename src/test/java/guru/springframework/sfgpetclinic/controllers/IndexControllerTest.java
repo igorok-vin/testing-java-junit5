@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class IndexControllerTest {
@@ -34,5 +36,21 @@ class IndexControllerTest {
         assertThrows(ValueNotFoundException.class,()->{
             indexController.errorHandler();
         });
+    }
+
+     /*AssertTimeout method counts the time we give, if our test method takes
+     longer than specified, this test will fail after all operations
+     are completed.*/
+    @Test
+    void testTimeOut() throws InterruptedException {
+        assertTimeout(Duration.ofMillis(100),()-> Thread.sleep(2000));
+    }
+
+    /* assertTimeoutPreemptively method takes longer than specified,
+    this method will fail immediately. And it won’t wait for all the
+    processes to be completed.*/
+    @Test
+    void testTimePrempt() throws InterruptedException {
+        assertTimeoutPreemptively(Duration.ofMillis(100),()-> Thread.sleep(2000));
     }
 }
