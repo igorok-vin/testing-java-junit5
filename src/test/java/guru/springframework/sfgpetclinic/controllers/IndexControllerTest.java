@@ -1,8 +1,10 @@
 package guru.springframework.sfgpetclinic.controllers;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.*;
 
 import java.time.Duration;
 
@@ -42,17 +44,19 @@ class IndexControllerTest {
     /*AssertTimeout method counts the time we give, if our test method takes
     longer than specified, this test will fail after all operations
     are completed.*/
+    @Disabled
     @Test
     void testTimeOut() throws InterruptedException {
-        assertTimeout(Duration.ofMillis(100), () -> Thread.sleep(2000));
+        assertTimeout(Duration.ofMillis(2000), () -> Thread.sleep(5000));
     }
 
     /* assertTimeoutPreemptively method takes longer than specified,
     this method will fail immediately. And it won’t wait for all the
     processes to be completed.*/
+    @Disabled
     @Test
     void testTimePrempt() throws InterruptedException {
-        assertTimeoutPreemptively(Duration.ofMillis(100), () -> Thread.sleep(2000));
+        assertTimeoutPreemptively(Duration.ofMillis(2000), () -> Thread.sleep(5000));
     }
 
     /*Failed assumptions do not result in a test failure; rather, a failed
@@ -65,4 +69,37 @@ class IndexControllerTest {
     void testAssumptionTrue() {
         assumeTrue("GURU".equalsIgnoreCase(System.getenv("GURU_RUNTIME")));
     }
+
+    /* Conditional JUnit Test Execution*/
+    @EnabledOnOs(OS.MAC)
+    @Test
+    void testMeOnMacOS() {
+    }
+
+    @EnabledOnOs(OS.WINDOWS)
+    @Test
+    void testMeOnWindows() {
+    }
+
+    @EnabledOnJre(JRE.JAVA_8)
+    @Test
+    void testMeOnJava8() {
+    }
+
+    @EnabledOnJre(JRE.JAVA_11)
+    @Test
+    void testMeOnJava11() {
+    }
+
+    @EnabledIfEnvironmentVariable(named = "username", matches = "sdf")
+    @Test
+    void testIfUserJT() {
+    }
+
+    @EnabledIfEnvironmentVariable(named = "USER", matches = "fred")
+    @Test
+    void testIfUserFred() {
+    }
+
+
 }
