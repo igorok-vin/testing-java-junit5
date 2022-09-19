@@ -8,8 +8,9 @@ import org.junit.jupiter.api.condition.*;
 
 import java.time.Duration;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 class IndexControllerTest {
     IndexController indexController;
@@ -26,6 +27,10 @@ class IndexControllerTest {
 
         /*текст повідомлення вискакує в консолі коли тест провальний */
         assertEquals("index", indexController.index(), "test not good");
+
+        /*бібліотека assertj. результат той же але з цієї бібліотеки
+        додаткові можливості*/
+        assertThat(indexController.index()).isEqualTo("index");
     }
 
     @Test
