@@ -29,7 +29,7 @@ class IndexControllerTest {
         assertEquals("index", indexController.index(), "test not good");
 
         /*бібліотека assertj. результат той же але з цієї бібліотеки
-        додаткові можливості*/
+        додаткові можливості. assertThat - є і в іншій бібліотеці Hamcrest*/
         assertThat(indexController.index()).isEqualTo("index");
     }
 
